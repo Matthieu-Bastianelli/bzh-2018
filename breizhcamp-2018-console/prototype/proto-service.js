@@ -1,9 +1,7 @@
-var service = require('../service')
+const service = require('../service')
 
 //En asynchrone :
-service.init(function(nb) {
-    console.log('[init]', nb, 'sessions trouvées.')
-});
+service.init(nb => console.log("[init]", nb, "sessions trouvées."));
 
 ////Ce que ça aurait donné en synchrone (ne fonctionne donc pas puisqu'on est en synchrone)
 //var nbElements =service.init();
