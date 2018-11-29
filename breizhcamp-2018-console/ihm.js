@@ -1,7 +1,12 @@
-const service = require('./service');
+const Service = require('./service');
 const readline = require('readline');
+//import Service from 'service';
 
 exports.start = () => {
+
+    let serviceObj = new Service();
+    //let serviceObj = new Service("http://2018.breizhcamp.org/json/talks.json");
+
     //let talks=[];
     const textMenu = "*************************\n1. Rafraichir les données\n2. Lister les sessions\n99. Quitter\nSaisissez une option (1, 2 ou 99): \n";
 
@@ -18,7 +23,7 @@ exports.start = () => {
                 //On ferme la saisie            
                 rl.close();
             }else if(saisie==1){
-                service.init()
+                serviceObj.init()
                     .then(nb => console.log("[init]", nb, " sessions trouvées.\n... Données mises à jour."))
                     .catch(err => console.log("Erreur de requête", err))
                     .then(() => questionMenu())
@@ -26,7 +31,7 @@ exports.start = () => {
                     
                 
             }else if(saisie==2){
-                let listeSessions = service.listerSessions();
+                let listeSessions = serviceObj.listerSessions();
                 if(listeSessions.length===0){
                     console.log('0 session trouvées. Assurez vous d\'avoir bien rafraîchi les données.')
                 }else{
